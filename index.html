@@ -7,7 +7,7 @@
 <meta name="description" content="AZ · Amelia Zárate. Alta costura y confección a medida. Vestidos hechos a mano con precisión y oficio." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
 :root{
   --ivory:#FAF7F0;
@@ -20,7 +20,9 @@
   --ink-soft:#4C473E;
   --muted:#857E6E;
   --line:#D8D0C1;
+  --accent:#D93B30;
   --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'Playfair Display','Cormorant Garamond',Georgia,serif;
   --sans:'Jost',-apple-system,sans-serif;
   --ease:cubic-bezier(.22,.61,.36,1);
 }
@@ -68,14 +70,11 @@ header{
 }
 header.scrolled{border-bottom-color:var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:84px}
-.brand{display:flex;flex-direction:column;line-height:1;text-align:center}
-.brand .mono{
-  font-family:var(--serif);font-weight:500;font-size:1.85rem;
-  letter-spacing:.18em;color:var(--ink);padding-left:.18em;
-}
+.brand{display:flex;flex-direction:column;align-items:center;line-height:1;text-align:center;gap:.5rem}
+.brand-logo{height:50px;width:auto;display:block}
 .brand .name{
   font-family:var(--sans);font-size:.55rem;letter-spacing:.42em;
-  text-transform:uppercase;color:var(--muted);margin-top:.35rem;padding-left:.42em;
+  text-transform:uppercase;color:var(--muted);padding-left:.42em;
 }
 .nav-links{display:flex;gap:2.6rem;list-style:none}
 .nav-links a{
@@ -146,7 +145,7 @@ header.scrolled{border-bottom-color:var(--line)}
 .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.4rem 0;overflow:hidden;white-space:nowrap}
 .marquee-track{display:inline-flex;gap:3.5rem;animation:scroll 32s linear infinite}
 .marquee span{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--stone);letter-spacing:.02em}
-.marquee span::before{content:"·";margin-right:3.5rem;color:var(--sand);font-style:normal}
+.marquee span::before{content:"|";margin-right:3.5rem;color:var(--accent);font-style:normal;font-weight:300}
 
 /* ============ SECTION SHELL ============ */
 section{position:relative}
@@ -204,7 +203,7 @@ section{position:relative}
 }
 .measure-list li::before{
   content:counter(m,decimal-leading-zero);font-family:var(--serif);font-size:1.3rem;
-  color:var(--taupe);min-width:2.5rem;
+  color:var(--accent);min-width:2.5rem;
 }
 .measure-list .mname{font-family:var(--serif);font-size:1.45rem;color:var(--ink);flex:1}
 .measure-list .mhint{font-size:.78rem;color:var(--muted);max-width:18ch;text-align:right}
@@ -217,7 +216,7 @@ section{position:relative}
   width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);
   padding:.7rem 0;font-family:var(--serif);font-size:1.2rem;color:var(--ink);
 }
-.field input:focus{outline:none;border-bottom-color:var(--ink)}
+.field input:focus{outline:none;border-bottom-color:var(--accent)}
 .field input::placeholder{color:var(--sand)}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}
 .upload-card .btn{width:100%;margin-top:1rem;text-align:center}
@@ -259,7 +258,7 @@ section{position:relative}
 /* ============ FOOTER ============ */
 footer{background:var(--ivory);padding:clamp(4rem,7vw,6rem) 0 2.5rem}
 .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:4rem;border-bottom:1px solid var(--line)}
-.foot-brand .mono{font-family:var(--serif);font-size:2.6rem;letter-spacing:.16em;color:var(--ink)}
+.foot-logo{height:140px;width:auto;display:block;margin-left:-12px}
 .foot-brand p{font-size:.82rem;color:var(--muted);max-width:28ch;margin-top:1.2rem}
 .foot-col h5{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);margin-bottom:1.4rem}
 .foot-col a{display:block;font-size:.85rem;color:var(--ink-soft);margin-bottom:.85rem;transition:color .3s var(--ease)}
@@ -304,8 +303,14 @@ footer{background:var(--ivory);padding:clamp(4rem,7vw,6rem) 0 2.5rem}
 
 <header id="header">
   <div class="wrap nav">
-    <a href="#inicio" class="brand">
-      <span class="mono">AZ</span>
+    <a href="#inicio" class="brand" aria-label="AZ · Amelia Zárate">
+      <svg class="brand-logo" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="6" width="308" height="188" fill="none" stroke="#D93B30" stroke-width="3.5"/>
+        <rect x="20" y="20" width="280" height="160" fill="none" stroke="#8C8475" stroke-width="1.4" stroke-dasharray="1.5 7" stroke-linecap="round"/>
+        <text x="98" y="148" font-family="'Playfair Display',Georgia,serif" font-weight="700" font-size="138" fill="#1A1712" text-anchor="middle">A</text>
+        <rect x="158" y="46" width="3.4" height="108" fill="#D93B30"/>
+        <text x="222" y="148" font-family="'Playfair Display',Georgia,serif" font-weight="700" font-size="138" fill="#1A1712" text-anchor="middle">Z</text>
+      </svg>
       <span class="name">Amelia Zárate</span>
     </a>
     <nav>
@@ -513,8 +518,15 @@ footer{background:var(--ivory);padding:clamp(4rem,7vw,6rem) 0 2.5rem}
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <div class="mono">AZ</div>
-        <p>Amelia Zárate · Atelier de alta costura y confección a medida.</p>
+        <svg class="foot-logo" viewBox="0 0 640 500" xmlns="http://www.w3.org/2000/svg" aria-label="AZ · Amelia Zárate">
+          <rect x="70" y="58" width="500" height="300" fill="none" stroke="#D93B30" stroke-width="3.5"/>
+          <rect x="92" y="80" width="456" height="256" fill="none" stroke="#8C8475" stroke-width="1.4" stroke-dasharray="1.5 7" stroke-linecap="round"/>
+          <text x="228" y="300" font-family="'Playfair Display',Georgia,serif" font-weight="700" font-size="220" fill="#1A1712" text-anchor="middle">A</text>
+          <rect x="318" y="118" width="4" height="182" fill="#D93B30"/>
+          <text x="412" y="300" font-family="'Playfair Display',Georgia,serif" font-weight="700" font-size="220" fill="#1A1712" text-anchor="middle">Z</text>
+          <text x="330" y="430" font-family="'Playfair Display',Georgia,serif" font-weight="500" font-size="52" letter-spacing="20" fill="#1A1712" text-anchor="middle">AMELIA ZARATE</text>
+        </svg>
+        <p>Atelier de alta costura y confección a medida.</p>
       </div>
       <div class="foot-col">
         <h5>Explorar</h5>
