@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AZ · Amelia Zárate — Atelier de Alta Costura</title>
+<meta name="description" content="AZ · Amelia Zárate. Alta costura y confección a medida. Vestidos hechos a mano con precisión y oficio." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ivory:#FAF7F0;
+  --bone:#F2EEE5;
+  --greige:#E7E0D3;
+  --sand:#DBD1BF;
+  --taupe:#A8997F;
+  --stone:#8C8475;
+  --ink:#2B2823;
+  --ink-soft:#4C473E;
+  --muted:#857E6E;
+  --line:#D8D0C1;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Jost',-apple-system,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--ivory);
+  color:var(--ink);
+  font-weight:300;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* subtle film grain overlay */
+body::after{
+  content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection{background:var(--sand);color:var(--ink)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+.serif{font-family:var(--serif)}
+.label{
+  font-family:var(--sans);font-size:.68rem;font-weight:400;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--muted);
+}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(1.5rem,5vw,5rem)}
+
+/* ============ ANNOUNCEMENT ============ */
+.announce{
+  background:var(--ink);color:var(--bone);text-align:center;
+  font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;
+  text-transform:uppercase;padding:.7rem 1rem;font-weight:300;
+}
+
+/* ============ HEADER ============ */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,247,240,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .5s var(--ease),background .5s var(--ease);
+}
+header.scrolled{border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:84px}
+.brand{display:flex;flex-direction:column;line-height:1;text-align:center}
+.brand .mono{
+  font-family:var(--serif);font-weight:500;font-size:1.85rem;
+  letter-spacing:.18em;color:var(--ink);padding-left:.18em;
+}
+.brand .name{
+  font-family:var(--sans);font-size:.55rem;letter-spacing:.42em;
+  text-transform:uppercase;color:var(--muted);margin-top:.35rem;padding-left:.42em;
+}
+.nav-links{display:flex;gap:2.6rem;list-style:none}
+.nav-links a{
+  font-family:var(--sans);font-size:.74rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-soft);position:relative;padding:.3rem 0;
+  transition:color .4s var(--ease);
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+  background:var(--ink);transition:width .45s var(--ease);
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  border:1px solid var(--ink);padding:.7rem 1.5rem;color:var(--ink);
+  transition:all .45s var(--ease);
+}
+.nav-cta:hover{background:var(--ink);color:var(--ivory)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem}
+.burger span{width:24px;height:1px;background:var(--ink);transition:.4s var(--ease)}
+
+/* ============ HERO ============ */
+.hero{position:relative;padding:clamp(4rem,9vw,8rem) 0 clamp(3rem,6vw,5rem)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.hero-copy{position:relative;z-index:2}
+.hero-eyebrow{margin-bottom:2rem;opacity:0;animation:rise 1s var(--ease) .2s forwards}
+.hero h1{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(3rem,8vw,6.4rem);line-height:.98;letter-spacing:-.01em;color:var(--ink);
+}
+.hero h1 em{font-style:italic;color:var(--taupe);font-weight:400}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln span{display:block;transform:translateY(110%);animation:reveal 1.1s var(--ease) forwards}
+.hero h1 .ln:nth-child(1) span{animation-delay:.35s}
+.hero h1 .ln:nth-child(2) span{animation-delay:.5s}
+.hero h1 .ln:nth-child(3) span{animation-delay:.65s}
+.hero-sub{
+  margin-top:2.2rem;max-width:30ch;font-size:1.02rem;color:var(--ink-soft);
+  opacity:0;animation:rise 1s var(--ease) 1s forwards;
+}
+.hero-actions{margin-top:2.8rem;display:flex;gap:1.4rem;align-items:center;opacity:0;animation:rise 1s var(--ease) 1.15s forwards}
+.btn{
+  font-family:var(--sans);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:1.05rem 2.2rem;transition:all .45s var(--ease);cursor:pointer;border:1px solid var(--ink);
+}
+.btn-solid{background:var(--ink);color:var(--ivory)}
+.btn-solid:hover{background:transparent;color:var(--ink)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.hero-media{position:relative}
+.hero-img{
+  aspect-ratio:3/4;
+  background:linear-gradient(150deg,var(--greige),var(--sand) 55%,var(--stone));
+  background-size:cover;background-position:center;
+  position:relative;overflow:hidden;
+  opacity:0;animation:fade 1.4s var(--ease) .6s forwards;
+}
+.hero-tag{
+  position:absolute;bottom:-26px;left:-26px;background:var(--ivory);
+  padding:1.4rem 1.8rem;border:1px solid var(--line);
+  opacity:0;animation:rise 1s var(--ease) 1.3s forwards;
+}
+.hero-tag .num{font-family:var(--serif);font-size:2.4rem;line-height:1;color:var(--ink)}
+.hero-tag .txt{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+
+/* ============ MARQUEE ============ */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.4rem 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:3.5rem;animation:scroll 32s linear infinite}
+.marquee span{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--stone);letter-spacing:.02em}
+.marquee span::before{content:"·";margin-right:3.5rem;color:var(--sand);font-style:normal}
+
+/* ============ SECTION SHELL ============ */
+section{position:relative}
+.sec{padding:clamp(5rem,11vw,9rem) 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:clamp(3rem,6vw,5rem)}
+.sec-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.02;letter-spacing:-.01em;max-width:14ch}
+.sec-head h2 em{font-style:italic;color:var(--taupe)}
+.sec-head .label{margin-bottom:1.4rem;display:block}
+
+/* ============ PHILOSOPHY ============ */
+.philo{background:var(--bone)}
+.philo-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,6vw,6rem);align-items:center}
+.philo-img{aspect-ratio:4/5;background:linear-gradient(160deg,var(--sand),var(--stone));background-size:cover;background-position:center}
+.philo p{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:300;line-height:1.45;color:var(--ink-soft)}
+.philo p em{font-style:italic;color:var(--taupe)}
+.philo .sign{margin-top:2.5rem;font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--ink)}
+.philo .sign small{display:block;font-family:var(--sans);font-style:normal;font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:.5rem}
+
+/* ============ COLECCION ============ */
+.coll-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,2.5vw,2.4rem)}
+.card{cursor:pointer}
+.card-img{aspect-ratio:3/4;background:var(--greige);background-size:cover;background-position:center;overflow:hidden;position:relative}
+.card-img::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:0;transition:opacity .5s var(--ease)}
+.card:hover .card-img::after{opacity:.06}
+.card-img .quick{
+  position:absolute;left:50%;bottom:1.2rem;transform:translate(-50%,1.5rem);
+  background:var(--ivory);color:var(--ink);font-size:.64rem;letter-spacing:.22em;
+  text-transform:uppercase;padding:.7rem 1.4rem;opacity:0;transition:all .5s var(--ease);white-space:nowrap;
+}
+.card:hover .quick{opacity:1;transform:translate(-50%,0)}
+.card-meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:1.1rem;gap:1rem}
+.card-meta h3{font-family:var(--serif);font-weight:400;font-size:1.4rem}
+.card-meta .price{font-family:var(--sans);font-size:.82rem;color:var(--ink-soft);white-space:nowrap}
+.card-meta .cat{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:.25rem}
+.coll-foot{margin-top:clamp(3rem,5vw,4rem);text-align:center}
+
+/* ============ A MEDIDA / PROCESS ============ */
+.medida{background:var(--ink);color:var(--bone)}
+.medida .label{color:var(--taupe)}
+.medida .sec-head h2{color:var(--bone)}
+.medida .sec-head h2 em{color:var(--sand)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(216,208,193,.18);border:1px solid rgba(216,208,193,.18)}
+.step{background:var(--ink);padding:clamp(2rem,3vw,3rem);min-height:220px;display:flex;flex-direction:column;transition:background .5s var(--ease)}
+.step:hover{background:#322e28}
+.step .n{font-family:var(--serif);font-size:1.1rem;color:var(--taupe);letter-spacing:.1em}
+.step h4{font-family:var(--serif);font-weight:400;font-size:1.7rem;margin:auto 0 .8rem}
+.step p{font-size:.86rem;color:rgba(242,238,229,.6);line-height:1.6}
+
+/* ============ MEDIDAS / UPLOAD ============ */
+.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:center}
+.measure-list{list-style:none;counter-reset:m}
+.measure-list li{
+  counter-increment:m;display:flex;align-items:center;gap:1.4rem;
+  padding:1.3rem 0;border-bottom:1px solid var(--line);
+}
+.measure-list li::before{
+  content:counter(m,decimal-leading-zero);font-family:var(--serif);font-size:1.3rem;
+  color:var(--taupe);min-width:2.5rem;
+}
+.measure-list .mname{font-family:var(--serif);font-size:1.45rem;color:var(--ink);flex:1}
+.measure-list .mhint{font-size:.78rem;color:var(--muted);max-width:18ch;text-align:right}
+.upload-card{background:var(--bone);padding:clamp(2rem,4vw,3.5rem);border:1px solid var(--line)}
+.upload-card h3{font-family:var(--serif);font-weight:300;font-size:2rem;line-height:1.1;margin-bottom:1rem}
+.upload-card p{font-size:.92rem;color:var(--ink-soft);margin-bottom:2rem}
+.field{margin-bottom:1.3rem}
+.field label{display:block;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.field input{
+  width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);
+  padding:.7rem 0;font-family:var(--serif);font-size:1.2rem;color:var(--ink);
+}
+.field input:focus{outline:none;border-bottom-color:var(--ink)}
+.field input::placeholder{color:var(--sand)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}
+.upload-card .btn{width:100%;margin-top:1rem;text-align:center}
+.upload-note{font-size:.7rem;color:var(--muted);margin-top:1.2rem;line-height:1.6;display:flex;gap:.5rem}
+
+/* ============ ATELIER ============ */
+.atelier{background:var(--bone)}
+.atelier-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.atelier-img{aspect-ratio:5/4;background:linear-gradient(150deg,var(--greige),var(--stone));background-size:cover;background-position:center}
+.atelier h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.08;margin-bottom:1.8rem}
+.atelier h2 em{font-style:italic;color:var(--taupe)}
+.atelier p{color:var(--ink-soft);margin-bottom:1.4rem;max-width:46ch}
+.stats{display:flex;gap:3rem;margin-top:2.5rem}
+.stat .num{font-family:var(--serif);font-size:2.8rem;line-height:1;color:var(--ink)}
+.stat .lab{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.5rem}
+
+/* ============ TESTIMONIALS ============ */
+.testi{text-align:center}
+.testi blockquote{
+  font-family:var(--serif);font-weight:300;font-style:italic;
+  font-size:clamp(1.7rem,3.6vw,2.9rem);line-height:1.4;max-width:24ch;margin:0 auto;color:var(--ink-soft);
+}
+.testi .who{margin-top:2.5rem;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+.testi .dots{display:flex;gap:.6rem;justify-content:center;margin-top:2.5rem}
+.testi .dots i{width:6px;height:6px;border-radius:50%;border:1px solid var(--stone);transition:.4s var(--ease);cursor:pointer}
+.testi .dots i.on{background:var(--stone)}
+
+/* ============ NEWSLETTER ============ */
+.news{background:var(--ink);color:var(--bone);text-align:center}
+.news h2{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,4.5vw,3.4rem);margin-bottom:1.2rem}
+.news h2 em{font-style:italic;color:var(--sand)}
+.news p{color:rgba(242,238,229,.6);max-width:42ch;margin:0 auto 2.5rem}
+.news-form{display:flex;max-width:480px;margin:0 auto;border-bottom:1px solid rgba(216,208,193,.35)}
+.news-form input{flex:1;background:transparent;border:none;color:var(--bone);font-family:var(--serif);font-size:1.2rem;padding:1rem 0}
+.news-form input:focus{outline:none}
+.news-form input::placeholder{color:var(--stone)}
+.news-form button{background:none;border:none;color:var(--bone);font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:0 1rem}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ivory);padding:clamp(4rem,7vw,6rem) 0 2.5rem}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:4rem;border-bottom:1px solid var(--line)}
+.foot-brand .mono{font-family:var(--serif);font-size:2.6rem;letter-spacing:.16em;color:var(--ink)}
+.foot-brand p{font-size:.82rem;color:var(--muted);max-width:28ch;margin-top:1.2rem}
+.foot-col h5{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);margin-bottom:1.4rem}
+.foot-col a{display:block;font-size:.85rem;color:var(--ink-soft);margin-bottom:.85rem;transition:color .3s var(--ease)}
+.foot-col a:hover{color:var(--ink)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2.5rem;gap:1rem;flex-wrap:wrap}
+.foot-bottom p{font-size:.7rem;letter-spacing:.1em;color:var(--muted)}
+
+/* reveal */
+[data-reveal]{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+
+/* keyframes */
+@keyframes reveal{to{transform:translateY(0)}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:980px){
+  .hero-grid,.philo-grid,.upload-grid,.atelier-grid{grid-template-columns:1fr;gap:3rem}
+  .hero-media{order:-1}
+  .coll-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .philo-img,.atelier-img{aspect-ratio:16/10}
+}
+@media(max-width:640px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  .coll-grid{grid-template-columns:1fr}
+  .sec-head{flex-direction:column;align-items:flex-start}
+  .measure-list .mhint{display:none}
+  .stats{gap:2rem}
+  .foot-top{grid-template-columns:1fr}
+  .hero-tag{left:0}
+}
+</style>
+</head>
+<body>
+
+<div class="announce">Citas presenciales y virtuales · Confección a medida en todo el país</div>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#inicio" class="brand">
+      <span class="mono">AZ</span>
+      <span class="name">Amelia Zárate</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#coleccion">Colección</a></li>
+        <li><a href="#medida">A Medida</a></li>
+        <li><a href="#medidas">Guía de Medidas</a></li>
+        <li><a href="#atelier">El Atelier</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <a href="#medidas" class="nav-cta">Subir medidas</a>
+    <button class="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow label">Atelier de alta costura · Est. 2019</div>
+      <h1>
+        <span class="ln"><span>El oficio</span></span>
+        <span class="ln"><span>de vestir</span></span>
+        <span class="ln"><span><em>a medida.</em></span></span>
+      </h1>
+      <p class="hero-sub">Prendas construidas a mano sobre tus propias proporciones. Sin tallas estándar. Solo tú, la tela y la precisión.</p>
+      <div class="hero-actions">
+        <a href="#coleccion" class="btn btn-solid">Ver colección</a>
+        <a href="#medida" class="btn btn-ghost">Confección a medida</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hero-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop')"></div>
+      <div class="hero-tag">
+        <div class="num serif">19</div>
+        <div class="txt">Medidas tomadas<br>por prenda</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Hecho a mano</span><span>Confección a medida</span><span>Telas naturales</span><span>Pruebas personalizadas</span><span>Hecho a mano</span><span>Confección a medida</span><span>Telas naturales</span><span>Pruebas personalizadas</span>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="sec philo">
+  <div class="wrap philo-grid">
+    <div class="philo-img" data-reveal style="background-image:url('https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=900&auto=format&fit=crop')"></div>
+    <div data-reveal>
+      <span class="label">Nuestra filosofía</span>
+      <p style="margin-top:1.5rem">Creemos en la <em>elegancia silenciosa</em>: la prenda que no grita, pero que se nota. Cada pieza nace de la conversación, la medida exacta y la paciencia del trabajo hecho a mano.</p>
+      <div class="sign">Amelia Zárate<small>Fundadora & Directora Creativa</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLECCION -->
+<section class="sec" id="coleccion">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <span class="label">Vestidos ya hechos</span>
+        <h2>La <em>Colección</em></h2>
+      </div>
+      <p style="max-width:30ch;color:var(--ink-soft);font-size:.95rem">Piezas listas para llevar, disponibles en tallas seleccionadas y ajustables sin costo a tus medidas.</p>
+    </div>
+    <div class="coll-grid">
+      <article class="card" data-reveal>
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=700&auto=format&fit=crop')"><span class="quick">Ver detalle</span></div>
+        <div class="card-meta"><div><h3>Vestido Lino</h3><div class="cat">Día · Lino belga</div></div><span class="price">$320</span></div>
+      </article>
+      <article class="card" data-reveal>
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=700&auto=format&fit=crop')"><span class="quick">Ver detalle</span></div>
+        <div class="card-meta"><div><h3>Túnica Hueso</h3><div class="cat">Cóctel · Seda</div></div><span class="price">$480</span></div>
+      </article>
+      <article class="card" data-reveal>
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=700&auto=format&fit=crop')"><span class="quick">Ver detalle</span></div>
+        <div class="card-meta"><div><h3>Slip Greige</h3><div class="cat">Noche · Satén</div></div><span class="price">$540</span></div>
+      </article>
+      <article class="card" data-reveal>
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=700&auto=format&fit=crop')"><span class="quick">Ver detalle</span></div>
+        <div class="card-meta"><div><h3>Vestido Arena</h3><div class="cat">Gala · Crepé</div></div><span class="price">$690</span></div>
+      </article>
+      <article class="card" data-reveal>
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1623609163859-ca93c959b98a?q=80&w=700&auto=format&fit=crop')"><span class="quick">Ver detalle</span></div>
+        <div class="card-meta"><div><h3>Camisero Taupe</h3><div class="cat">Día · Algodón</div></div><span class="price">$295</span></div>
+      </article>
+      <article class="card" data-reveal>
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=700&auto=format&fit=crop')"><span class="quick">Ver detalle</span></div>
+        <div class="card-meta"><div><h3>Vestido Marfil</h3><div class="cat">Novia civil · Crepé</div></div><span class="price">$820</span></div>
+      </article>
+    </div>
+    <div class="coll-foot" data-reveal><a href="#" class="btn btn-ghost">Ver toda la colección</a></div>
+  </div>
+</section>
+
+<!-- A MEDIDA -->
+<section class="sec medida" id="medida">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <span class="label">Confección a medida</span>
+        <h2>De la idea <em>a tu cuerpo</em></h2>
+      </div>
+      <p style="max-width:32ch;color:rgba(242,238,229,.6);font-size:.95rem">Un proceso pensado para que recibas una prenda hecha solo para ti, paso a paso.</p>
+    </div>
+    <div class="steps" data-reveal>
+      <div class="step"><div class="n">01</div><h4>Consulta</h4><p>Conversamos sobre tu ocasión, estilo y telas. Presencial o virtual.</p></div>
+      <div class="step"><div class="n">02</div><h4>Medidas</h4><p>Tomas tus medidas con nuestra guía o te las tomamos en el atelier.</p></div>
+      <div class="step"><div class="n">03</div><h4>Diseño & Tela</h4><p>Elegimos el patrón, la caída y el textil que mejor te sienta.</p></div>
+      <div class="step"><div class="n">04</div><h4>Confección</h4><p>Cortamos y cosemos tu prenda a mano sobre tus proporciones exactas.</p></div>
+      <div class="step"><div class="n">05</div><h4>Prueba</h4><p>Ajustamos cada detalle en una o más pruebas hasta el calce perfecto.</p></div>
+      <div class="step"><div class="n">06</div><h4>Entrega</h4><p>Recibes tu pieza terminada, lista para acompañarte por años.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIDAS / UPLOAD -->
+<section class="sec" id="medidas">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <span class="label">Guía de medidas · Súbelas tú misma</span>
+        <h2>Aprende a <em>medirte</em></h2>
+      </div>
+      <p style="max-width:32ch;color:var(--ink-soft);font-size:.95rem">Con una cinta métrica flexible y cinco minutos. Te guiamos en cada una.</p>
+    </div>
+    <div class="upload-grid">
+      <ul class="measure-list" data-reveal>
+        <li><span class="mname">Contorno de busto</span><span class="mhint">Cinta horizontal sobre la parte más alta</span></li>
+        <li><span class="mname">Contorno de cintura</span><span class="mhint">En la parte más estrecha del torso</span></li>
+        <li><span class="mname">Contorno de cadera</span><span class="mhint">Sobre la zona más prominente</span></li>
+        <li><span class="mname">Talle de espalda</span><span class="mhint">De la nuca a la cintura</span></li>
+        <li><span class="mname">Largo de la prenda</span><span class="mhint">Del hombro al largo deseado</span></li>
+      </ul>
+      <div class="upload-card" data-reveal>
+        <h3>Sube tus medidas</h3>
+        <p>Guárdalas en tu perfil para tus próximos encargos. Todo en centímetros.</p>
+        <form onsubmit="return false">
+          <div class="field-row">
+            <div class="field"><label>Busto (cm)</label><input type="number" placeholder="92" /></div>
+            <div class="field"><label>Cintura (cm)</label><input type="number" placeholder="70" /></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Cadera (cm)</label><input type="number" placeholder="98" /></div>
+            <div class="field"><label>Talle espalda (cm)</label><input type="number" placeholder="41" /></div>
+          </div>
+          <div class="field"><label>Largo deseado (cm)</label><input type="number" placeholder="120" /></div>
+          <button class="btn btn-solid">Guardar mis medidas</button>
+          <div class="upload-note"><span>↳</span><span>Tus medidas son datos personales: las guardamos de forma segura y solo se usan para tu confección. Puedes borrarlas cuando quieras.</span></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATELIER -->
+<section class="sec atelier" id="atelier">
+  <div class="wrap atelier-grid">
+    <div class="atelier-img" data-reveal style="background-image:url('https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?q=80&w=900&auto=format&fit=crop')"></div>
+    <div data-reveal>
+      <span class="label" style="display:block;margin-bottom:1.4rem">El Atelier</span>
+      <h2>Un taller donde el <em>tiempo</em> es el lujo</h2>
+      <p>Amelia Zárate fundó AZ con una idea sencilla: que cada mujer merece una prenda pensada para su cuerpo y nadie más. Lo que comenzó como un taller pequeño hoy viste a clientas que vuelven temporada tras temporada.</p>
+      <p>Trabajamos con telas naturales, patrones propios y una sola promesa — que lo que te lleves sea verdaderamente tuyo.</p>
+      <div class="stats">
+        <div class="stat"><div class="num serif">600+</div><div class="lab">Prendas a medida</div></div>
+        <div class="stat"><div class="num serif">7</div><div class="lab">Años de oficio</div></div>
+        <div class="stat"><div class="num serif">100%</div><div class="lab">Hecho a mano</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec testi">
+  <div class="wrap" data-reveal>
+    <span class="label">Lo que dicen</span>
+    <blockquote id="quote" style="margin-top:2.5rem">"Nunca un vestido me había quedado así. Sentí que estaba hecho para mí, porque lo estaba."</blockquote>
+    <div class="who" id="who">Valentina R. · Vestido de gala a medida</div>
+    <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="sec news" id="contacto">
+  <div class="wrap" data-reveal>
+    <span class="label" style="color:var(--sand)">Mantente cerca</span>
+    <h2 style="margin-top:1.5rem">Únete al <em>círculo</em> AZ</h2>
+    <p>Nuevas colecciones, fechas de citas disponibles y notas del atelier. Sin ruido.</p>
+    <form class="news-form" onsubmit="return false">
+      <input type="email" placeholder="tu@correo.com" />
+      <button>Suscribirme</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="mono">AZ</div>
+        <p>Amelia Zárate · Atelier de alta costura y confección a medida.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Explorar</h5>
+        <a href="#coleccion">Colección</a>
+        <a href="#medida">A Medida</a>
+        <a href="#medidas">Guía de Medidas</a>
+        <a href="#atelier">El Atelier</a>
+      </div>
+      <div class="foot-col">
+        <h5>Atención</h5>
+        <a href="#">Agenda una cita</a>
+        <a href="#">Preguntas frecuentes</a>
+        <a href="#">Envíos y devoluciones</a>
+        <a href="#">Mi cuenta</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contacto</h5>
+        <a href="#">WhatsApp</a>
+        <a href="#">hola@az-atelier.com</a>
+        <a href="#">Instagram</a>
+        <a href="#">Ubicación</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 AZ · Amelia Zárate. Todos los derechos reservados.</p>
+      <p>Privacidad · Términos · Cookies</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// header border on scroll
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>20));
+
+// scroll reveal
+const io=new IntersectionObserver((es)=>{
+  es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);io.unobserve(e.target)}});
+},{threshold:.14});
+document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+// testimonials
+const quotes=[
+  ['"Nunca un vestido me había quedado así. Sentí que estaba hecho para mí, porque lo estaba."','Valentina R. · Vestido de gala a medida'],
+  ['"El proceso es tan cuidado como la prenda. Subí mis medidas desde casa y el calce fue perfecto."','Camila S. · Vestido de novia civil'],
+  ['"AZ entiende la elegancia que no necesita demostrarse. Es mi atelier de cabecera."','Daniela M. · Colección a medida']
+];
+let qi=0;const q=document.getElementById('quote'),w=document.getElementById('who'),dots=[...document.querySelectorAll('#dots i')];
+function show(i){
+  q.style.opacity=0;w.style.opacity=0;
+  setTimeout(()=>{q.textContent=quotes[i][0];w.textContent=quotes[i][1];q.style.transition=w.style.transition='opacity .6s';q.style.opacity=1;w.style.opacity=1;},300);
+  dots.forEach((d,j)=>d.classList.toggle('on',j===i));
+}
+dots.forEach((d,i)=>d.onclick=()=>{qi=i;show(i)});
+setInterval(()=>{qi=(qi+1)%quotes.length;show(qi)},6000);
+
+// mobile menu
+document.querySelector('.burger').onclick=function(){
+  const links=document.querySelector('.nav-links');
+  const open=links.style.display==='flex';
+  links.style.cssText=open?'':'display:flex;position:fixed;inset:84px 0 auto;background:var(--ivory);flex-direction:column;padding:2rem;gap:1.5rem;border-bottom:1px solid var(--line)';
+};
+</script>
+</body>
+</html>
